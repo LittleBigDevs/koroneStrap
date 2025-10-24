@@ -53,6 +53,7 @@ For Linux:
 ## ⭐ Features
 - FastFlags support
 - macOS + Linux support
+- (finally) 2017 and 2018 support (Linux only)
 
 ---
 
