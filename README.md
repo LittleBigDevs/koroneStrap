@@ -26,39 +26,13 @@
 </p>
 
 ---
-
-## 🚀 Installation
-- Go to the [Releases](https://github.com/reprovision/koroneStrap/releases) tab and download **`koroneStrap.exe`**
-<details open>
-
-<summary>With the terminal</summary>
-
-Install the required packages from the requirements.txt file by using:
-```
-pip3 install -r requirements.txt
-```
-
-Run `koroneStrap.py` by executing the command:
-```
-python3 koroneStrap.py
-```
-
-</details>
-
-For Linux:  
-- Install [Korone](https://example.com) via [Wine](https://www.winehq.org).
-
----
+> [!NOTE]
+> Installation guides and more can be found at [our documentation](https://docs.mrmeowcat.dev/koroneStrap/getting-started)
 
 ## ⭐ Features
 - FastFlags support
 - macOS + Linux support
 - (finally) 2017 and 2018 support (Linux only)
-
----
-
-## ⚡ FastFlags
-For a list of FFlags, visit [Evil3D/Pekora-FFlags](https://github.com/Evil3D/Pekora-FFlags).
 
 ---
 
