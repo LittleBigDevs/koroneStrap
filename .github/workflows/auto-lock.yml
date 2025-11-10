@@ -1,0 +1,11 @@
+on:
+  issues:
+    types: [closed]
+
+jobs:
+  lock:
+    runs-on: ubuntu-latest
+    steps:
+      - run: gh issue lock "${{ github.event.issue.html_url }}" --reason resolved
+    env:
+      GH_TOKEN: ${{ github.token }}
