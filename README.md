@@ -8,14 +8,11 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/reprovision/koroneStrap/releases">
-    <img src="https://img.shields.io/github/v/release/reprovision/pekoStrap?style=flat-square&color=blue" alt="Latest Release">
+  <a href="https://github.com/LittleBigDevs/koroneStrap/releases">
+    <img src="https://img.shields.io/github/v/release/LittleBigDevs/koroneStrap?style=flat-square&color=blue" alt="Latest Release">
   </a>
-  <a href="https://github.com/reprovision/koroneStrap/stargazers">
-    <img src="https://img.shields.io/github/stars/reprovision/pekoStrap?style=flat-square&color=yellow" alt="Stars">
-  </a>
-  <a href="https://github.com/reprovision/koroneStrap/issues">
-    <img src="https://img.shields.io/github/issues/reprovision/pekoStrap?style=flat-square&color=red" alt="Issues">
+  <a href="https://github.com/LittleBigDevs/koroneStrap/issues">
+    <img src="https://img.shields.io/github/issues/LittleBigDevs/koroneStrap?style=flat-square&color=red" alt="Issues">
   </a>
 </p>
 
