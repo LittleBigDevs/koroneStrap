@@ -34,7 +34,8 @@
 ---
 
 ## ❤️ Credits
-- Made with ❤️ by **97yg/fyr8** on Discord
+- Made with ❤️ by **6qkpajejtnl1kbtjoypsp5405khbggzp** on Discord
+- Co-developed with **bwvvd21lb3dtzw93bwvvd21lb3c** on Discord
 - Linux support and more by **debuganddevs** on Discord
 - General help by **zyythy** on Discord
 - FPS unlocker by **sushality** on Discord
