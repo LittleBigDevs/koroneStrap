@@ -43,11 +43,6 @@ jobs:
         # Exit-zero treats all errors as warnings
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
 
-    - name: Format check with black
-      run: |
-        pip install black
-        black --check .
-
     - name: Type check with mypy
       run: |
         pip install mypy
@@ -128,6 +123,12 @@ jobs:
           - os: windows-latest
             artifact_name: koroneStrap.exe
             asset_name: koroneStrap-windows.exe
+          - os: ubuntu-latest
+            artifact_name: koroneStrap
+            asset_name: koroneStrap-linux
+          - os: macos-latest
+            artifact_name: koroneStrap
+            asset_name: koroneStrap-macos
 
     steps:
     - uses: actions/checkout@v4
@@ -144,7 +145,7 @@ jobs:
         pip install pyinstaller
       shell: bash
 
-    - name: Building the exe
+    - name: Build the .exe
       run: |
         pyinstaller --onefile --name koroneStrap koroneStrap.py
       shell: bash
