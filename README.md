@@ -25,6 +25,8 @@
 ---
 > [!NOTE]
 > Installation guides and more can be found at [our documentation](https://docs.mrmeowcat.dev/koroneStrap/getting-started)
+> [!WARNING]  
+> macOS support at the moment is currently very buggy.
 
 ## ⭐ Features
 - FastFlags support
@@ -34,8 +36,8 @@
 ---
 
 ## ❤️ Credits
-- Made with ❤️ by **6qkpajejtnl1kbtjoypsp5405khbggzp** on Discord
-- Co-developed with **bwvvd21lb3dtzw93bwvvd21lb3c** on Discord
+- Made with ❤️ by **pz7a** on Discord
+- Co-developed with **getgeekedallnight** on Discord
 - Linux support and more by **debuganddevs** on Discord
 - General help by **zyythy** on Discord
 - FPS unlocker by **sushality** on Discord
