@@ -822,7 +822,7 @@ def main_menu():
         ]
         for (r, g, b), line in zip(gradient, ascii_logo):
             print(f"\033[38;2;{r};{g};{b}m{line}\033[0m")
-        print(Fore.BLUE + "Made with <3 by usertest on Korone")
+        print(Fore.BLUE + "Made with <3 by vancyy and David")
         platform_name = "Windows" if sys_info['is_windows'] else ("Linux" if sys_info['is_linux'] else ("macOS" if sys_info['is_macos'] else "Unknown"))
         print(Fore.CYAN + f"Running on: {platform_name}")
         
@@ -967,3 +967,4 @@ if __name__ == "__main__":
     
     # Run main menu ONLY if no arguments provided
     main_menu()
+
