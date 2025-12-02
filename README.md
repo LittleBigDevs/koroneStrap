@@ -25,6 +25,9 @@
 ---
 > [!NOTE]
 > Installation guides and more can be found at [our documentation](https://docs.mrmeowcat.dev/koroneStrap/getting-started)
+
+---
+
 > [!WARNING]  
 > macOS support at the moment is currently very buggy.
 
