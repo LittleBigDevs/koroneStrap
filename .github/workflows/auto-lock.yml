@@ -5,6 +5,8 @@ on:
 jobs:
   lock:
     runs-on: ubuntu-latest
+    permissions:
+      issues: write
     steps:
       - run: gh issue lock "${{ github.event.issue.html_url }}" --reason resolved
     env:

@@ -6,6 +6,8 @@ jobs:
   moderate:
     if: github.event.label.name == 'rejected (blatantly duplicate)'
     runs-on: ubuntu-latest
+    permissions:
+      issues: write
     steps:
       - run: |
           url="${{ github.event.issue.html_url }}"
