@@ -1,0 +1,39 @@
+# Configuration for welcome - https://github.com/behaviorbot/welcome
+
+# Comment posted to first-time issue openers
+newIssueWelcomeComment: >
+  👋 Thanks for opening your first issue on koroneStrap!
+
+
+  Before we dig in, a few quick tips:
+
+  - 🔍 **Search first** — use the [issue search](https://github.com/LittleBigDevs/koroneStrap/issues) to check if your issue has already been reported or resolved. Duplicates will be closed without a response.
+
+  - 📖 **Check the docs** — many common questions are already answered in the [documentation](https://docs.mrmeowcat.dev/koroneStrap/getting-started).
+
+  - ✅ **Fill out the template completely** — incomplete reports (missing steps, no logs, no OS info) make it very hard to help you and may be closed.
+
+  - 🐛 **Bugs vs suggestions** — if you have an idea rather than a problem, use the Feature Request template instead.
+
+
+  We'll get back to you as soon as possible. Thanks for helping make koroneStrap better!
+
+# Comment posted to first-time PR contributors
+newPRWelcomeComment: >
+  🎉 Thanks for opening your first pull request on koroneStrap!
+
+
+  Please make sure your PR:
+
+  - Follows the project's code style and conventions
+
+  - Includes a clear description of what changed and why
+
+  - Is not a duplicate of an existing open PR
+
+
+  A maintainer will review it shortly. We appreciate the contribution!
+
+# Comment posted when a first-time contributor's PR is merged
+firstPRMergeComment: >
+  🚀 Your first PR just got merged — welcome to the contributors list! Thanks for making koroneStrap better.
