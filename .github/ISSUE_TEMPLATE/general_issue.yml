@@ -1,7 +1,7 @@
 name: I have an issue
 description: Something isn't working as expected and you're not sure where it fits
 title: "[ISSUE] "
-labels: ["triage"]
+labels: ["issue"]
 body:
   - type: textarea
     id: description
