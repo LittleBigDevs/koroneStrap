@@ -1,0 +1,87 @@
+name: Bug Report
+description: Create a report to help us improve
+title: "[BUG] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        > [!IMPORTANT]
+        > **Before proceeding, please make sure:**
+        > - You have checked [our documentation](https://docs.mrmeowcat.dev/koroneStrap/getting-started)
+        > - You have checked [previous bug reports](https://github.com/LittleBigDevs/koroneStrap/issues?q=label%3Abug%20is%3Aissue) to check if your issue is a duplicate, or a solved bug.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the bug
+      description: A clear and concise description of what the bug is.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Steps to reproduce the behavior.
+      placeholder: |
+        1. Go to '...'
+        2. Click on '...'
+        3. Scroll down to '...'
+        4. See error
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: A clear and concise description of what you expected to happen.
+    validations:
+      required: true
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots / videos
+      description: If applicable, add screenshots or videos to help explain your problem.
+    validations:
+      required: false
+
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating System
+      options:
+        - macOS
+        - Windows
+        - Linux (Ubuntu)
+        - Linux (Other)
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: os-other
+    attributes:
+      label: If you selected "Other", please specify
+      placeholder: "e.g. FreeBSD, ChromeOS..."
+    validations:
+      required: false
+
+  - type: input
+    id: os-version
+    attributes:
+      label: OS Version
+      placeholder: "e.g. Sequoia, 11, 22.04"
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs
+      description: Include logs from the terminal.
+      render: shell
+    validations:
+      required: false

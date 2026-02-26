@@ -1,0 +1,41 @@
+name: I have an issue
+description: Something isn't working as expected and you're not sure where it fits
+title: "[ISSUE] "
+labels: ["triage"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: What's the issue?
+      description: Describe what's happening and what you expected instead.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating System
+      options:
+        - macOS
+        - Windows
+        - Linux (Ubuntu)
+        - Linux (Other)
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: os-other
+    attributes:
+      label: If you selected "Other", please specify
+      placeholder: "e.g. FreeBSD, ChromeOS..."
+    validations:
+      required: false
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Any additional context?
+      description: Steps to reproduce, screenshots, logs — anything that might help.
+    validations:
+      required: false
