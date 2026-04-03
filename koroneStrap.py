@@ -462,25 +462,43 @@ def download_bootstrapper():
     
     try:
         print(Fore.CYAN + "[*] Starting download...")
-        
-        def show_progress(block_num, block_size, total_size):
-            if total_size > 0:
-                downloaded = block_num * block_size
-                percent = min(100, (downloaded * 100) // total_size)
-                mb_downloaded = downloaded / (1024 * 1024)
-                mb_total = total_size / (1024 * 1024)
-                print(f"\r{Fore.CYAN}[*] Progress: {percent}% ({mb_downloaded:.1f}MB / {mb_total:.1f}MB)", end="", flush=True)
-        
-        urllib.request.urlretrieve(BOOTSTRAPPER_URL, BOOTSTRAPPER_FILE, reporthook=show_progress)
-        print()
-        
+
+        req = urllib.request.Request(
+            BOOTSTRAPPER_URL,
+            headers={
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
+            }
+        )
+
+        with urllib.request.urlopen(req) as response:
+            total_size = int(response.headers.get("Content-Length", 0))
+            downloaded = 0
+            chunk_size = 8192
+
+            with open(BOOTSTRAPPER_FILE, "wb") as f:
+                while True:
+                    chunk = response.read(chunk_size)
+                    if not chunk:
+                        break
+                    f.write(chunk)
+                    downloaded += len(chunk)
+                    if total_size > 0:
+                        percent = min(100, (downloaded * 100) // total_size)
+                        mb_downloaded = downloaded / (1024 * 1024)
+                        mb_total = total_size / (1024 * 1024)
+                        print(f"\r{Fore.CYAN}[*] Progress: {percent}% ({mb_downloaded:.1f}MB / {mb_total:.1f}MB)", end="", flush=True)
+                    else:
+                        mb_downloaded = downloaded / (1024 * 1024)
+                        print(f"\r{Fore.CYAN}[*] Downloaded: {mb_downloaded:.1f}MB", end="", flush=True)
+            print()
+
         if os.path.exists(BOOTSTRAPPER_FILE):
             file_size = os.path.getsize(BOOTSTRAPPER_FILE)
             if file_size > 0:
-                print(Fore.GREEN + f"[*] Download completed successfully!")
+                print(Fore.GREEN + "[*] Download completed successfully!")
                 print(Fore.CYAN + f"[*] File size: {file_size / (1024 * 1024):.1f}MB")
                 print(Fore.CYAN + f"[*] Location: {os.path.abspath(BOOTSTRAPPER_FILE)}")
-                
+
                 run_now = input(Fore.WHITE + "\nDo you want to run the bootstrapper now? (y/N): ").strip().lower()
                 if run_now == 'y':
                     launch_bootstrapper()
@@ -489,14 +507,14 @@ def download_bootstrapper():
                 os.remove(BOOTSTRAPPER_FILE)
         else:
             print(Fore.RED + "[!] Download failed - file not found")
-            
+
     except urllib.error.HTTPError as e:
         print(Fore.RED + f"[!] HTTP Error: {e.code} - {e.reason}")
     except urllib.error.URLError as e:
         print(Fore.RED + f"[!] URL Error: {e.reason}")
     except Exception as e:
         print(Fore.RED + f"[!] Download failed: {e}")
-    
+
     press_any_key()
 
 def launch_bootstrapper():
