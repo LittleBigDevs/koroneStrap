@@ -88,19 +88,25 @@ jobs:
           </plist>
           EOF
             zip -r ${{ matrix.name }} koroneStrap.app
+            echo "RELEASE_FILE=${{ matrix.name }}" >> $GITHUB_ENV
           elif [ "${{ matrix.platform }}" == "windows" ]; then
             pyinstaller --onefile --name koroneStrap koroneStrap.py
-            mv dist/koroneStrap.exe ${{ matrix.name }}
+            echo "RELEASE_FILE=dist/koroneStrap.exe" >> $GITHUB_ENV
           else
             pyinstaller --onefile --name koroneStrap koroneStrap.py
             mv dist/koroneStrap ${{ matrix.name }}
+            echo "RELEASE_FILE=${{ matrix.name }}" >> $GITHUB_ENV
           fi
+        shell: bash
+      - name: Debug Output
+        run: ls -R
         shell: bash
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
-          files: ${{ matrix.name }}
+          files: ${{ env.RELEASE_FILE }}
           body_path: changelog.txt
           generate_release_notes: false
+          name: ${{ github.ref_name }}
         env:
           GITHUB_TOKEN: ${{ github.token }}
