@@ -58,7 +58,11 @@ jobs:
             pyinstaller --onefile --target-arch ${{ matrix.arch }} --name koroneStrap_bin koroneStrap.py
             mkdir -p koroneStrap.app/Contents/MacOS
             mkdir -p koroneStrap.app/Contents/Resources
-            printf '#!/bin/bash\nDIR=$(cd "$(dirname "$0")"; pwd)\nosascript -e "tell application \\"Terminal\\" to do script \\"\\x27$DIR/koroneStrap_bin\\x27\\""\n' > koroneStrap.app/Contents/MacOS/koroneStrap
+            cat <<'EOF_LAUNCHER' > koroneStrap.app/Contents/MacOS/koroneStrap
+          #!/bin/bash
+          DIR=$(cd "$(dirname "$0")"; pwd)
+          osascript -e "tell application \"Terminal\" to do script \"'$DIR/koroneStrap_bin'\""
+          EOF_LAUNCHER
             chmod +x koroneStrap.app/Contents/MacOS/koroneStrap
             cp dist/koroneStrap_bin koroneStrap.app/Contents/MacOS/
             cat <<EOF > koroneStrap.app/Contents/Info.plist
