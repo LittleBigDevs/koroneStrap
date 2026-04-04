@@ -91,7 +91,8 @@ jobs:
             echo "RELEASE_FILE=${{ matrix.name }}" >> $GITHUB_ENV
           elif [ "${{ matrix.platform }}" == "windows" ]; then
             pyinstaller --onefile --name koroneStrap koroneStrap.py
-            echo "RELEASE_FILE=dist/koroneStrap.exe" >> $GITHUB_ENV
+            mv dist/koroneStrap.exe ${{ matrix.name }}
+            echo "RELEASE_FILE=${{ matrix.name }}" >> $GITHUB_ENV
           else
             pyinstaller --onefile --name koroneStrap koroneStrap.py
             mv dist/koroneStrap ${{ matrix.name }}
@@ -107,6 +108,7 @@ jobs:
           files: ${{ env.RELEASE_FILE }}
           body_path: changelog.txt
           generate_release_notes: false
+          fail_on_unmatched_files: true
           name: ${{ github.ref_name }}
         env:
           GITHUB_TOKEN: ${{ github.token }}
