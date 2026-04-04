@@ -14,20 +14,26 @@ jobs:
           - os: windows-latest
             name: koroneStrap-windows.exe
             exe: koroneStrap.exe
+            ext: ""
           - os: macos-12
-            name: koroneStrap-macos-intel
-            exe: koroneStrap
+            name: koroneStrap-macos-intel.zip
+            exe: koroneStrap.app
+            ext: ".app"
           - os: macos-14
-            name: koroneStrap-macos-arm
-            exe: koroneStrap
+            name: koroneStrap-macos-arm.zip
+            exe: koroneStrap.app
+            ext: ".app"
           - os: ubuntu-latest
             name: koroneStrap-linux-intel
             exe: koroneStrap
+            ext: ""
     runs-on: ${{ matrix.os }}
     permissions:
       contents: write
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -37,12 +43,20 @@ jobs:
           pip install colorama pyinstaller
       - name: Build
         run: |
-          pyinstaller --onefile --name koroneStrap koroneStrap.py
-          mv dist/${{ matrix.exe }} dist/${{ matrix.name }}
+          if [[ "${{ matrix.ext }}" == ".app" ]]; then
+            pyinstaller --onefile --windowed --name koroneStrap koroneStrap.py
+            cd dist
+            zip -r ../${{ matrix.name }} koroneStrap.app
+            cd ..
+          else
+            pyinstaller --onefile --name koroneStrap koroneStrap.py
+            mv dist/${{ matrix.exe }} ${{ matrix.name }}
+          fi
         shell: bash
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
-          files: dist/${{ matrix.name }}
+          files: ${{ matrix.name }}
+          generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ github.token }}
