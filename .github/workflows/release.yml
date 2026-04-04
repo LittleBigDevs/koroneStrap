@@ -14,19 +14,21 @@ jobs:
           - os: windows-latest
             name: koroneStrap-windows.exe
             exe: koroneStrap.exe
-            ext: ""
-          - os: macos-12
-            name: koroneStrap-macos-intel.zip
+            platform: windows
+          - os: macos-latest
+            name: koroneStrap-macos-universal.zip
             exe: koroneStrap.app
-            ext: ".app"
-          - os: macos-14
+            platform: macos
+            arch: universal2
+          - os: macos-latest
             name: koroneStrap-macos-arm.zip
             exe: koroneStrap.app
-            ext: ".app"
+            platform: macos
+            arch: arm64
           - os: ubuntu-latest
             name: koroneStrap-linux-intel
             exe: koroneStrap
-            ext: ""
+            platform: linux
     runs-on: ${{ matrix.os }}
     permissions:
       contents: write
@@ -37,26 +39,64 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Generate Changelog
+        run: |
+          PREV_TAG=$(git describe --tags --abbrev=0 HEAD^ 2>/dev/null || echo "")
+          if [ -z "$PREV_TAG" ]; then
+            git log --pretty=format:"%s" > changelog.txt
+          else
+            git log --pretty=format:"%s" $PREV_TAG..HEAD > changelog.txt
+          fi
+        shell: bash
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install colorama pyinstaller
       - name: Build
         run: |
-          if [[ "${{ matrix.ext }}" == ".app" ]]; then
-            pyinstaller --onefile --windowed --name koroneStrap koroneStrap.py
-            cd dist
-            zip -r ../${{ matrix.name }} koroneStrap.app
-            cd ..
+          if [ "${{ matrix.platform }}" == "macos" ]; then
+            pyinstaller --onefile --target-arch ${{ matrix.arch }} --name koroneStrap_bin koroneStrap.py
+            mkdir -p koroneStrap.app/Contents/MacOS
+            mkdir -p koroneStrap.app/Contents/Resources
+            printf '#!/bin/bash\nDIR=$(dirname "$0")\nosascript -e "tell application \\"Terminal\\" to do script \\"\\$DIR/koroneStrap_bin\\""\n' > koroneStrap.app/Contents/MacOS/koroneStrap
+            chmod +x koroneStrap.app/Contents/MacOS/koroneStrap
+            cp dist/koroneStrap_bin koroneStrap.app/Contents/MacOS/
+            cat <<EOF > koroneStrap.app/Contents/Info.plist
+            <?xml version="1.0" encoding="UTF-8"?>
+            <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+            <plist version="1.0">
+            <dict>
+                <key>CFBundleExecutable</key>
+                <string>koroneStrap</string>
+                <key>CFBundleIconFile</key>
+                <string>icon-windowed.icns</string>
+                <key>CFBundleIdentifier</key>
+                <string>com.koroneStrap.app</string>
+                <key>CFBundleInfoDictionaryVersion</key>
+                <string>6.0</string>
+                <key>CFBundleName</key>
+                <string>koroneStrap</string>
+                <key>CFBundlePackageType</key>
+                <string>APPL</string>
+                <key>CFBundleShortVersionString</key>
+                <string>1.0.0</string>
+            </dict>
+            </plist>
+            EOF
+            zip -r ${{ matrix.name }} koroneStrap.app
+          elif [ "${{ matrix.platform }}" == "windows" ]; then
+            pyinstaller --onefile --name koroneStrap koroneStrap.py
+            mv dist/koroneStrap.exe ${{ matrix.name }}
           else
             pyinstaller --onefile --name koroneStrap koroneStrap.py
-            mv dist/${{ matrix.exe }} ${{ matrix.name }}
+            mv dist/koroneStrap ${{ matrix.name }}
           fi
         shell: bash
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
           files: ${{ matrix.name }}
-          generate_release_notes: true
+          body_path: changelog.txt
+          generate_release_notes: false
         env:
           GITHUB_TOKEN: ${{ github.token }}
