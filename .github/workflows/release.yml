@@ -62,27 +62,27 @@ jobs:
             chmod +x koroneStrap.app/Contents/MacOS/koroneStrap
             cp dist/koroneStrap_bin koroneStrap.app/Contents/MacOS/
             cat <<EOF > koroneStrap.app/Contents/Info.plist
-            <?xml version="1.0" encoding="UTF-8"?>
-            <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-            <plist version="1.0">
-            <dict>
-                <key>CFBundleExecutable</key>
-                <string>koroneStrap</string>
-                <key>CFBundleIconFile</key>
-                <string>icon-windowed.icns</string>
-                <key>CFBundleIdentifier</key>
-                <string>com.koroneStrap.app</string>
-                <key>CFBundleInfoDictionaryVersion</key>
-                <string>6.0</string>
-                <key>CFBundleName</key>
-                <string>koroneStrap</string>
-                <key>CFBundlePackageType</key>
-                <string>APPL</string>
-                <key>CFBundleShortVersionString</key>
-                <string>1.0.0</string>
-            </dict>
-            </plist>
-            EOF
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0">
+          <dict>
+              <key>CFBundleExecutable</key>
+              <string>koroneStrap</string>
+              <key>CFBundleIconFile</key>
+              <string>icon-windowed.icns</string>
+              <key>CFBundleIdentifier</key>
+              <string>com.koroneStrap.app</string>
+              <key>CFBundleInfoDictionaryVersion</key>
+              <string>6.0</string>
+              <key>CFBundleName</key>
+              <string>koroneStrap</string>
+              <key>CFBundlePackageType</key>
+              <string>APPL</string>
+              <key>CFBundleShortVersionString</key>
+              <string>1.0.0</string>
+          </dict>
+          </plist>
+          EOF
             zip -r ${{ matrix.name }} koroneStrap.app
           elif [ "${{ matrix.platform }}" == "windows" ]; then
             pyinstaller --onefile --name koroneStrap koroneStrap.py
