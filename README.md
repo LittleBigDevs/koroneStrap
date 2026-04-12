@@ -39,8 +39,7 @@
 ---
 
 ## ❤️ Credits
-- Made with ❤️ by **pz7a** on Discord
-- Co-developed with **getgeekedallnight** on Discord
+- Made with ❤️ by **Rev**
+- Co-developed with **David**
 - Linux support and more by **debuganddevs** on Discord
-- General help by **zyythy** on Discord
-- FPS unlocker by **sushality** on Discord
+- General help by **Zyth**
