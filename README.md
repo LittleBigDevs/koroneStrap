@@ -11,9 +11,14 @@
   <a href="https://github.com/LittleBigDevs/koroneStrap/releases">
     <img src="https://img.shields.io/github/v/release/LittleBigDevs/koroneStrap?style=flat-square&color=blue" alt="Latest Release">
   </a>
+  
   <a href="https://github.com/LittleBigDevs/koroneStrap/issues">
     <img src="https://img.shields.io/github/issues/LittleBigDevs/koroneStrap?style=flat-square&color=red" alt="Issues">
   </a>
+</p>
+
+<p align="center">
+  <i>If you can, please star this repo. Every bit counts!</i>
 </p>
 
 ---
